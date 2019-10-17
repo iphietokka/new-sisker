@@ -30,7 +30,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>SIS</b>KER</a>
+    <a href="../../index2.html"><b>Aplikasi</b>Klinik</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
@@ -39,7 +39,7 @@
    <form method="POST" action="{{ route('login') }}">
         @csrf
       <div class="form-group has-feedback">
-                   <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username"> 
+                   <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus placeholder="Username">
 
                                 @error('username')
                                     <span class="invalid-feedback" role="alert">

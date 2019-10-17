@@ -15,6 +15,12 @@
 //     return view('welcome');
 // });
 Route::get('/', 'HomePageController@index');
+Route::get('/panduan', 'HomePageController@panduan');
+Route::get('/kerjasama', 'HomePageController@kerjasama');
+Route::get('/aktif', 'HomePageController@aktif');
+Route::get('/akan-berakhir', 'HomePageController@akan_berakhir');
+Route::get('/berakhir', 'HomePageController@berakhir');
+Route::get('/download/{id}', 'HomePageController@download');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index');
@@ -72,6 +78,7 @@ Route::group(['middleware' => ['auth', 'user'], 'prefix' => 'user'], function ()
     Route::get('/', 'User\HomeController@index')->name('user-home');
 
     Route::get('profile', 'User\ProfileController@index');
+    Route::post('profile/update/{id}', 'User\ProfileController@update');
 
     //Realisasi Kerjasama
     Route::get('rencana-kerjasama', 'User\RecanaKerjasamaController@index');

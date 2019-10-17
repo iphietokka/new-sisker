@@ -23,7 +23,6 @@ class ProfileController extends Controller
     {
         $title = $this->title;
         $data = User::where('id', '=', Auth::id())->first();
-
         return view('user.' . $title . '.index', compact('title', 'data'));
     }
 
@@ -79,7 +78,13 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $model = $request->all();
+        $data = User::find($model['id']);
+        if ($data->update($model)) {
+            return redirect()->back()->with('success', 'Data Berhasil Di Update');
+        } else {
+            return redirect('user/' . $this->title)->with('error', 'Something Wrong!!');
+        }
     }
 
     /**

@@ -58,7 +58,11 @@ class HomePageController extends Controller
             ->groupBy(DB::raw("year(tgl_mulai)"))
             ->get()->toArray();
         $tahun = array_column($tahun, 'tahun');
-        return view('welcome', compact('datakerja', 'akanberakhir', 'berakhir', 'aktif', 'janji', 'data'));
+        return view('welcome', compact('datakerja', 'akanberakhir', 'berakhir', 'aktif', 'janji', 'data'))
+            ->with('desk', json_encode($desk, JSON_NUMERIC_CHECK))
+            ->with('tahun', json_encode($tahun, JSON_NUMERIC_CHECK))
+            ->with('janji', json_encode($janji, JSON_NUMERIC_CHECK))
+            ->with('year', json_encode($year, JSON_NUMERIC_CHECK));
     }
 
 
@@ -68,9 +72,54 @@ class HomePageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function panduan()
     {
-        //
+        return view('panduan');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function kerjasama()
+    {
+        $data = DB::select('SELECT * ,
+                        CASE WHEN DATEDIFF(tgl_selesai, CURDATE()) <= 0 THEN "Berakhir"
+                        WHEN DATEDIFF(tgl_selesai, CURDATE()) < 30 THEN "Akan Berakhir"
+                        ELSE "Masih Berjalan"
+                        END status
+                        FROM kerjasamas');
+
+        return view('kerjasama', compact('data'));
+    }
+
+    public function aktif()
+    {
+        $aktif = DB::select('SELECT * FROM kerjasamas WHERE date(tgl_selesai) > date(NOW())');
+
+        return view('aktif', compact('aktif'));
+    }
+
+    public function berakhir()
+    {
+        $berakhir = DB::select('SELECT * FROM kerjasamas WHERE date(tgl_selesai) <= date(NOW())');
+
+        return view('berakhir', compact('berakhir'));
+    }
+
+    public function akan_berakhir()
+    {
+        $akanberakhir = DB::select('SELECT * FROM kerjasamas WHERE date(tgl_selesai) >=date(NOW()) and date(tgl_selesai) <= date(NOW()+INTERVAL 1 MONTH)');
+
+        return view('akan-berakhir', compact('akanberakhir'));
+    }
+
+    public function download($id)
+    {
+        $kerja = Kerjasama::where('id', $id)->firstOrFail();
+        $pathToFile = public_path('dokumen/kerjasama/' . $kerja->dokumen);
+        return response()->download($pathToFile);
     }
 
     /**

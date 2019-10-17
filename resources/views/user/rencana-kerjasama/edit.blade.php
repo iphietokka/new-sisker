@@ -57,7 +57,7 @@
  <div class='box-footer'>
      <input type="hidden" name="id" value="{{$data->id}}">
   <button type='submit'  class='btn btn-info'>Tambahkan</button>
-  <a href='{{ url('admin/ksb') }}' class='btn btn-default'>Cancel</a>
+  <a href='{{ url('user/rencana-kerjasama') }}' class='btn btn-default'>Cancel</a>
   </div>
     </form>
     </div>
