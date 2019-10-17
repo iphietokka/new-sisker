@@ -101,8 +101,8 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
-    <!-- Main content -->
-    <section class="content">
+   <section class="content">
+      <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -113,8 +113,9 @@
               <p>Data Kerjasama</p>
             </div>
             <div class="icon">
-            <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-bag"></i>
             </div>
+            <a href="{{url('admin/kerjasama')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -130,6 +131,7 @@
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
+            <a href="{{url('admin/kerjasama/aktif')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
 
@@ -145,8 +147,9 @@
               <p>Kerjasama Akan Berakhir</p>
             </div>
             <div class="icon">
-             <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-pie-graph"></i>
             </div>
+            <a href="{{url('admin/kerjasama/akan_berakhir')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -162,160 +165,109 @@
               <p>Kerjasama Berakhir</p>
             </div>
             <div class="icon">
-             <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-person-add"></i>
             </div>
+            <a href="{{url('admin/kerjasama/berakhir')}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
-        <!-- ./col -->
-    
 
-    
-   
-
-        <!-- ./col -->
       </div>
 
-<div class="box">
-  <div class="box-header">
-         <div class="pull-left">
-        <h4>Daftar Kerjasama Unimus</h4>
+
+          <!-- TO DO List -->
+          <div class="box box-primary">
+            <div class="box-header">
+              <i class="ion ion-clipboard"></i>
+
+              <h3 class="box-title">Alur Pengajuan Kerjasama</h3>
+
+              
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+              <ul class="todo-list">
+                <li>
+                  <!-- drag handle -->
+                  <span class="handle">
+                       1
+                      </span>
+               
+                  <!-- todo text -->
+                  <span class="text">Mitra /Inisiator membuat Akun. (satu mitra hanya dapat memiliki satu akun)</span>
+                  
+                </li>
+                <li>
+                      <span class="handle">
+                        2
+                      </span>
+                  <span class="text">Mitra/Inisiator login dengan Akun yang sudah teregistras</span>
+                
+                </li>
+                <li>
+                      <span class="handle">
+                       3
+                      </span>
+                  <span class="text">Mitra/Inisiator mengisi borang inisiasi kerjasama dan meng-upload</span>3
+                 3
+                </li>
+                <li>
+                      <span class="handle">
+                       4
+                      </span>
+                 
+                  <span class="text">Surat permohonan kerja sama ditujukan kepada Rektor dengan tembusan ditujukan kepada Wakil Rektor IV dan Bagian Kerjasama</span>
+              
+                 
+                </li>
+                <li>
+                      <span class="handle">
+                      5
+                      </span>
+                  <span class="text">Mitra/Inisiator menunggu jawaban dari Universitas/</span>
+              
+                </li>
+                <li>
+                      <span class="handle">
+                        6
+                      </span>
+                  <span class="text">Mitra/Inisiator menerima surat balasan untuk berkoordinasi dengan Bagian Kerjasama</span>
+                
+  
+                </li>
+                 <li>
+                      <span class="handle">
+                        7
+                      </span>
+                  <span class="text">Mitra/Inisiator melakukan koordinasi dengan Bagian Kerjasama untuk penyusunan naskah dan pelaksanaan penandatanganan Naskah Kerja Sama</span>
+                
+  
+                </li>
+                  <li>
+                      <span class="handle">
+                       8
+                      </span>
+                  <span class="text">Mitra/Inisiator menandatangani Naskah Kerja Sama</span>
+                
+  
+                </li>
+                    <li>
+                      <span class="handle">
+                     9
+                      </span>
+                  <span class="text">Mitra/Inisiator menerima naskah MoU/MoA yang sudah ditandatangani para pihak</span>
+                
+  
+                </li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer clearfix no-border">
+              <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+            </div>
           </div>
-      </div>
-<div class="box-body">  
-<table id="example1" class="table table-bordered table-striped">
-<thead>
-<tr>
-<th class="text-center" width="10%" class="" >No</th>
-<th class="text-center">Mitra</th>
-<th class="text-center">Deskripsi</th>
-<th class="text-center">Jenis</th>
-<th class="text-center">Unit Pengelola</th>
-<th class="text-center">Tanggal Selesai</th>
-<th class="text-center">Status</th>
-</tr>
-</thead>
-<tbody>
-<?php $a=1;?>
-@foreach($data as $dt)
-<tr>
-<td class="text-center">{{$a++}}</td>
-<td class="text-center">{{$dt->mitra}}</td>
-<td class="text-center">{{$dt->deskripsi}}</td>
-<td class="text-center">{{$dt->jenis}}</td>
-<td class="text-center">{{$dt->pengelola}}</td>
-<td class="text-center">{{Carbon\Carbon::parse($dt->tgl_selesai)->format('Y-m-d')}}</td>
-<td class="text-center">
-@if ($dt->status === 'Berakhir')
-<span style="color: red"><b>Berakhir</b></span>
-@elseif ($dt->status === 'Masih Berjalan')
-<span style="color: black"><b>Masih Berjalan</b></span>
-@else
-<span style="color: orange">Akan Berakhir</span>
-@endif
-</td>
-<td class="text-center">
-
-<div class="input-group-btn">
-<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Action
-<span class="fa fa-caret-down"></span></button>
-<ul class="dropdown-menu">
-<li><a data-toggle="modal" data-target="#modal-{{$dt->id}}"  href="#">Details</a></li>
-</ul>
-</div>
-
-<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;" id="modal-{{$dt->id}}">
-<div class="modal-dialog modal-lg">
-<div class="modal-content">
-<div class="modal-header">
-<h4>Data Kerjasama</h4>
-</div>
-<div class="modal-body">
-<table class="table table-bordered">
-
-<tr>
-<th>Mitra</th>
-<td>{{ $dt->mitra }}</td>
-</tr>
-<tr>
-<th>No.Kerjasama Mitra</th>
-<td>{{ $dt->no_kerja_mitra }}</td>
-</tr>
-<tr>
-<th>Deskripsi</th>
-<td>{{ $dt->deskripsi }}</td>
-</tr>
-<tr>
-<th>No.Kontrak</th>
-<td>{{ $dt->no_kontrak }}</td>
-</tr>
-<tr>
-<th>Jenis</th>
-<td>{{$dt->jenis}}</td>
-</tr>
-<tr>
-
-<th>Bidang</th>
-<td>{{ $dt->bidang }}</td>
-</tr>
-<tr>
-<th>Regional</th>
-<td> {{  $dt->regional }}</td>
-</tr>
-<tr>
-<th>Unit Pengelola</th>
-<td>{{ $dt->pengelola }}</td>
-</tr>
-<tr>
-<th>Tanggal Mulai</th>
-<td>{{Carbon\Carbon::parse($dt->tgl_mulai)->format('d-m-Y')}}</td>
-</tr>
-<tr>
-<th>Tanggal Selesai</th>
-<td>{{Carbon\Carbon::parse($dt->tgl_selesai)->format('d-m-Y')}}</td>
-</tr>
-<tr>
-<tr>
-    <th>Status</th>
-    <td class="text-center">
-
-        @if ($dt->status === 'Berakhir')
-<span style="color: red"><b>Berakhir</b></span>
-@elseif ($dt->status === 'Masih Berjalan')
-<span style="color: black"><b>Masih Berjalan</b></span>
-@else
-<span style="color: orange">Akan Berakhir</span>
-@endif
-    </td>
-</tr>
-</table>
-</div>
-<div class="modal-footer">
-<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-@if ($dt->dokumen == null)
-<a class="btn btn-info" href="#"> <i class="fa fa-download"> No File </i></a>
-@else
-<a class="btn btn-info" href="{{ url('admin/'.$title.'/download/'.$dt->id) }}"> <i class="fa fa-download"> Download </i></a>
-@endif
-
-</div>
-</div>
-<!-- /.modal-content -->
-</div>
-<!-- /.modal-dialog -->
-</div>
-</button>
-</td>
-</tr>
-@endforeach
-</tbody>
-</table>
-</div>
-</div>
-
-
-
-        </section>
-       
+          <!-- /.box -->
+    </section>
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
