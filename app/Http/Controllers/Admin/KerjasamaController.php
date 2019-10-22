@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\KerjasamaExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use App\Model\Kerjasama;
+use PDF;
+use Maatwebsite\Excel\Facades\Excel;
 use File;
 use DB;
-use App\Model\Kerjasama;
+
 
 class KerjasamaController extends Controller
 {
@@ -194,5 +198,24 @@ class KerjasamaController extends Controller
         $title = $this->title;
         $aktif = DB::select('SELECT * FROM kerjasamas WHERE date(tgl_selesai) > date(NOW())');
         return view('admin.' . $this->title . '.aktif', compact('title', 'aktif'));
+    }
+
+    public function cetak_pdf()
+    {
+        $title = $this->title;
+        $data = DB::select('SELECT * ,
+                        CASE WHEN DATEDIFF(tgl_selesai, CURDATE()) <= 0 THEN "Berakhir"
+                        WHEN DATEDIFF(tgl_selesai, CURDATE()) < 30 THEN "Akan Berakhir"
+                        ELSE "Masih Berjalan"
+                        END status
+                        FROM kerjasamas');
+        $pdf = PDF::loadview('admin.' . $title . '.cetak-pdf', compact('title', 'data'));
+
+        return $pdf->stream();
+    }
+
+    public function export()
+    {
+        return Excel::download(new KerjasamaExport, 'data_kerjasama.xlsx');
     }
 }

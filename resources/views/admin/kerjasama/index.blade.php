@@ -6,9 +6,11 @@
 <div class="box-header">
 <div class="pull-right">
 <a href="kerjasama/create" class="btn btn-default"> <i class="fa  fa-plus-square"> Tambah</i></a>
+<a href="kerjasama/cetak-pdf" class="btn btn-default"> <i class="fa  fa-file"> Print PDF</i></a>
+<a href="kerjasama/export" class="btn btn-default"> <i class="fa  fa-download"> Export</i></a>
 </div>
 </div>
-<div class="box-body">  
+<div class="box-body">
 <table id="example1" class="table table-bordered table-striped">
 <thead>
 <tr>

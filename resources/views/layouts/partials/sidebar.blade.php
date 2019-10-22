@@ -63,6 +63,8 @@
         @else
         <li><a href="{{ url('user/rencana-kerjasama') }}"><i class="fa fa-circle-o"></i> Rencana Kerjasama</a></li>
           @endif
-            
+           @if (Auth::user()->roles->name == 'admin')
+        <li><a href="{{ url('admin/download') }}"><i class="fa fa-circle-o"></i> Download</a></li>
+  @endif
       </ul>
     </section>

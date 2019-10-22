@@ -15,7 +15,8 @@
 //     return view('welcome');
 // });
 Route::get('/', 'HomePageController@index');
-Route::get('/panduan', 'HomePageController@panduan');
+Route::get('/panduan', 'DownloadController@index');
+Route::get('/panduan/download/{id}', 'DownloadController@download');
 Route::get('/kerjasama', 'HomePageController@kerjasama');
 Route::get('/aktif', 'HomePageController@aktif');
 Route::get('/akan-berakhir', 'HomePageController@akan_berakhir');
@@ -51,6 +52,8 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::get('kerjasama/akan_berakhir', 'Admin\KerjasamaController@akan_berakhir');
     Route::get('kerjasama/berakhir', 'Admin\KerjasamaController@berakhir');
     Route::get('kerjasama/aktif', 'Admin\KerjasamaController@aktif');
+    Route::get('kerjasama/cetak-pdf', 'Admin\KerjasamaController@cetak_pdf');
+    Route::get('kerjasama/export', 'Admin\KerjasamaController@export');
 
     //Realisasi Kerjasama
     Route::get('realisasi-kerjasama', 'Admin\RealisasiKerjasamaController@index');
@@ -62,6 +65,11 @@ Route::group(['middleware' => ['auth', 'admin'], 'prefix' => 'admin'], function 
     Route::get('realisasi-kerjasama/download/{id}', 'Admin\RealisasiKerjasamaController@download');
     Route::get('realisasi-kerjasama/cari', 'Admin\RealisasiKerjasamaController@cari');
 
+    Route::get('download', 'Admin\DownloadController@index');
+    Route::post('download/store', 'Admin\DownloadController@store');
+    Route::post('download/update/{id}', 'Admin\DownloadController@update');
+    Route::get('download/download/{id}', 'Admin\DownloadController@download');
+    Route::delete('download/{id}', 'Admin\DownloadController@destroy');
 
     //Realisasi Kerjasama
     Route::get('rencana-kerjasama', 'Admin\RencanaKerjasamaController@index');

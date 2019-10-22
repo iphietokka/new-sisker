@@ -86,9 +86,9 @@
 </div>
 <hr>
  <div class="form-group">
-    <label for="inputPassword3" class="col-sm-3 control-label">Nama Perusahaan</label>
+    <label for="inputPassword3" class="col-sm-3 control-label">Nama Instansi</label>
     <div class="col-sm-6">
-    <input type="text" class="form-control{{ $errors->has('institusi') ? ' is-invalid' : '' }}" placeholder="Nama Perusahaan" name="institusi" value="{{ $data->institusi }}">
+    <input type="text" class="form-control{{ $errors->has('institusi') ? ' is-invalid' : '' }}" placeholder="Nama Instansi" name="institusi" value="{{ $data->institusi }}">
          @if ($errors->has('institusi'))
                               <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('institusi') }}</strong>
@@ -97,9 +97,9 @@
 </div>
 </div>
 <div class="form-group">
-    <label for="inputPassword3" class="col-sm-3 control-label">Email Perusahaan</label>
+    <label for="inputPassword3" class="col-sm-3 control-label">Email Instansi</label>
     <div class="col-sm-6">
-           <input type="email" class="form-control{{ $errors->has('email_institusi') ? ' is-invalid' : '' }}" placeholder="Email Perusahaan" name="email_institusi" value="{{ $data->email_institusi }}">
+           <input type="email" class="form-control{{ $errors->has('email_institusi') ? ' is-invalid' : '' }}" placeholder="Email Instansi" name="email_institusi" value="{{ $data->email_institusi }}">
          @if ($errors->has('email_institusi'))
                               <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('email_institusi') }}</strong>
@@ -109,9 +109,9 @@
 </div>
 
  <div class="form-group">
-    <label for="inputPassword3" class="col-sm-3 control-label">Telepon Perusahaan</label>
+    <label for="inputPassword3" class="col-sm-3 control-label">Telepon Instansi</label>
     <div class="col-sm-6">
-         <input type="text" class="form-control{{ $errors->has('telp_institusi') ? ' is-invalid' : '' }}" placeholder="Telepon Perusahaan" name="telp_institusi" value="{{ $data->telp_institusi }}">
+         <input type="text" class="form-control{{ $errors->has('telp_institusi') ? ' is-invalid' : '' }}" placeholder="Telepon Instansi" name="telp_institusi" value="{{ $data->telp_institusi }}">
         @if ($errors->has('telp_institusi'))
                               <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('telp_institusi') }}</strong>

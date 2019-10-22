@@ -59,7 +59,11 @@
 <div class="form-group">
     <label for="inputPassword3" class="col-sm-3 control-label">Jenis</label>
     <div class="col-sm-6">
-        <input type="text" class="form-control{{ $errors->has('jenis') ? ' is-invalid' : '' }}" placeholder="Jenis" name="jenis" value="{{ old('jenis') }}">
+      <select name="jenis" id="" class="form-control{{ $errors->has('jenis') ? ' is-invalid' : '' }} select2">
+        <option value="">Pilih Jenis</option>
+        <option value="MoU">MoU</option>
+        <option value="PKS">PKS</option>
+      </select>
    @if ($errors->has('jenis'))
                               <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('jenis') }}</strong>
@@ -95,8 +99,11 @@
     <div class="form-group">
     <label for="inputPassword3" class="col-sm-3 control-label">Regional</label>
     <div class="col-sm-6">
-    
-      <input type="text" class="form-control{{ $errors->has('regional') ? ' is-invalid' : '' }}" placeholder="Regional" name="regional" value="{{old('regional')}}"> 
+    <select name="regional" id="" class="form-control select2">
+       <option value="">Pilih Regional</option>
+        <option value="Dalam Negeri">Dalam Negeri</option>
+        <option value="Luar Negeri">Luar Negeri</option>
+</select>
      @if ($errors->has('regional'))
                               <span class="invalid-feedback" role="alert">
                                 <strong>{{ $errors->first('regional') }}</strong>
@@ -137,6 +144,7 @@
 
 @section('scripts')
 <script>
+  $('.select2').select2();
  $('#datepicker').datepicker({
      autoclose: true,
        format: 'yyyy-mm-dd'
