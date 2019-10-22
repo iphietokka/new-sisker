@@ -24,7 +24,7 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{$dt->name}}</td>
                 <td>
-               <a href="{{ url('admin/'.$title.'/download/'.$dt->id) }}"> <i class="fa fa-download" style="color: red"> Download </i></a>        
+               <a href="{{ url('admin/'.$title.'/download/'.$dt->id) }}" target="_blank"> <i class="fa fa-download" style="color: red"> Download </i></a>        
                 </td>
                 <td>
                   <a href="" type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#edit_modal{{$dt->id}}"> <i class="fa fa-edit"></i> Edit</a>

@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
+use File;
+use PDF;
 use App\Model\Download;
 
 class DownloadController extends Controller
@@ -88,7 +94,7 @@ class DownloadController extends Controller
     {
 
         $filesss = Download::where('id', $id)->firstOrFail();
-        $pathToFile = public_path('uploads/dokumen/' . $filesss->dokumen);
-        return response()->download($pathToFile);
+        $pathToFile = public_path('dokumen/panduan/' . $filesss->dokumen);
+        return response()->file($pathToFile);
     }
 }

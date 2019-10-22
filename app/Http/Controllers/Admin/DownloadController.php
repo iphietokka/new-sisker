@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 use File;
+use PDF;
 use App\Model\Download;
 
 class DownloadController extends Controller
@@ -53,8 +55,12 @@ class DownloadController extends Controller
         if ($validator->passes()) {
             $input = $request->all();
             if ($request->hasFile('dokumen')) {
-                $input['dokumen'] = $request->dokumen->getClientOriginalName();
-                $request->dokumen->move(public_path('uploads/dokumen'), $input['dokumen']);
+                $file = $request->file('dokumen');
+                $file_extension = $file->getClientOriginalName();
+                $destination_path = public_path() . '/dokumen/panduan/';
+                $filename = $file_extension;
+                $request->file('dokumen')->move($destination_path, $filename);
+                $input['dokumen'] = $filename;
             }
 
             Download::create($input);
@@ -99,13 +105,13 @@ class DownloadController extends Controller
         $boat = Download::find($model['id']);
         $boat->fill($request->except('dokumen'));
         if ($file = $request->hasFile('dokumen')) {
-            $fullPath = public_path("uploads/dokumen/{$boat->dokumen}");
+            $fullPath = public_path("dokumen/panduan/{$boat->dokumen}");
             if (File::exists($fullPath)) {
                 File::delete($fullPath);
             }
             $file = $request->file('dokumen');
             $fileName = $file->getClientOriginalName();
-            $destinationPath = public_path() . '/uploads/dokumen/';
+            $destinationPath = public_path() . '/dokumen/panduan/';
             $file->move($destinationPath, $fileName);
             $boat->dokumen = $fileName;
         }
@@ -126,7 +132,7 @@ class DownloadController extends Controller
     {
         if ($data = Download::find($id)) {
             $filename = $data->dokumen;
-            $fullPath = public_path("/uploads/dokumen/{$data->dokumen}");
+            $fullPath = public_path("dokumen/panduan/{$data->dokumen}");
             if (File::exists($fullPath)) {
                 File::delete($fullPath);
             }
@@ -141,7 +147,11 @@ class DownloadController extends Controller
     {
 
         $filesss = Download::where('id', $id)->firstOrFail();
-        $pathToFile = public_path('uploads/dokumen/' . $filesss->dokumen);
-        return response()->download($pathToFile);
+        $pathToFile = public_path('dokumen/panduan/' . $filesss->dokumen);
+        return response()->file($pathToFile);
+
+        // $filesss = Download::where('id', $id)->firstOrFail();
+        // $pdf = PDF::loadView(public_path('dokumen/panduan/' . $filesss->dokumen));
+        // return $pdf->inline();
     }
 }

@@ -16,7 +16,7 @@
               @foreach ($data as $dt)
                   <li>
                   <span class="handle">{{$loop->iteration}}</span>
-                  <span class="text"> <a href="{{ url('panduan/download/'.$dt->id) }}">{{$dt->name}}</a> </span>
+                  <span class="text"> <a href="{{ url('panduan/download/'.$dt->id) }}" target="_blank">{{$dt->name}}</a> </span>
                 </li> 
               @endforeach
                
